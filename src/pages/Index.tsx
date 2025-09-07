@@ -141,6 +141,9 @@ const Index = () => {
           <p className="text-primary-foreground/80">
             Secure Case Management Platform • Professional Legal Services
           </p>
+          <p className="text-primary-foreground/60 text-sm mt-2">
+            Powered by Techverse Infotech Private Limited
+          </p>
         </div>
       </footer>
     </div>
