@@ -17,6 +17,8 @@ import EmployeeDashboard from "./pages/EmployeeDashboard";
 import BankEmployeeDashboard from "./pages/BankEmployeeDashboard";
 import LoanApplications from "./pages/LoanApplications";
 import LoanRecovery from "./pages/LoanRecovery";
+import CreateEmployeeAccount from "./pages/CreateEmployeeAccount";
+import CreateBankAccount from "./pages/CreateBankAccount";
 
 import Attendance from "./pages/Attendance";
 import PastApplications from "./pages/PastApplications";
@@ -93,6 +95,8 @@ const App = () => (
           <Route path="/admin/loan-recovery" element={<LoanRecovery />} />
           <Route path="/admin/past-applications" element={<PastApplications />} />
           <Route path="/admin/payment-details" element={<PaymentDetails />} />
+          <Route path="/admin/create-employee-account" element={<CreateEmployeeAccount />} />
+          <Route path="/admin/create-bank-account" element={<CreateBankAccount />} />
           
           {/* Employee Routes */}
           <Route path="/employee/applications" element={<LoanApplications />} />
