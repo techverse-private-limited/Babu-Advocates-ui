@@ -10,6 +10,7 @@ import {
   SidebarMenuItem, 
   useSidebar 
 } from "@/components/ui/sidebar";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { 
   Scale,
@@ -22,9 +23,14 @@ import {
   LogOut,
   RefreshCw,
   IndianRupee,
-  History
+  History,
+  Plus,
+  UserPlus,
+  Building,
+  ChevronDown
 } from "lucide-react";
 import { showToast } from "@/lib/toast";
+import { useState } from "react";
 
 const menuItems = [
   {
@@ -60,6 +66,7 @@ export function AppSidebar() {
   const location = useLocation();
   const navigate = useNavigate();
   const currentPath = location.pathname;
+  const [createAccountsOpen, setCreateAccountsOpen] = useState(false);
 
   const isActive = (path: string) => currentPath === path;
 
@@ -109,6 +116,48 @@ export function AppSidebar() {
                   </SidebarMenuItem>
                 );
               })}
+              
+              {/* Create Accounts Dropdown */}
+              <SidebarMenuItem>
+                <Collapsible open={createAccountsOpen} onOpenChange={setCreateAccountsOpen}>
+                  <CollapsibleTrigger asChild>
+                    <button 
+                      className={`
+                        flex items-center justify-between w-full px-3 py-3 rounded-lg transition-all duration-200 group relative overflow-hidden
+                        text-slate-300 hover:bg-slate-700/50 hover:text-white
+                      `}
+                    >
+                      <div className="flex items-center">
+                        <Plus className={`h-5 w-5 ${collapsed ? '' : 'mr-3'} flex-shrink-0`} />
+                        {!collapsed && (
+                          <span className="font-medium">Create Accounts</span>
+                        )}
+                      </div>
+                      {!collapsed && (
+                        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${createAccountsOpen ? 'rotate-180' : ''}`} />
+                      )}
+                    </button>
+                  </CollapsibleTrigger>
+                  {!collapsed && (
+                    <CollapsibleContent className="ml-8 mt-1 space-y-1">
+                      <button 
+                        className="flex items-center w-full px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700/30 rounded-md transition-all duration-200"
+                        onClick={() => {/* Navigate to employee login creation */}}
+                      >
+                        <UserPlus className="h-4 w-4 mr-2" />
+                        Employee login for advocates
+                      </button>
+                      <button 
+                        className="flex items-center w-full px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-700/30 rounded-md transition-all duration-200"
+                        onClick={() => {/* Navigate to bank login creation */}}
+                      >
+                        <Building className="h-4 w-4 mr-2" />
+                        Bank's logins
+                      </button>
+                    </CollapsibleContent>
+                  )}
+                </Collapsible>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
